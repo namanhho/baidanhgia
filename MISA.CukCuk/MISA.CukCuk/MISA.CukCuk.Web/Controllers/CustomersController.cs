@@ -104,7 +104,6 @@ namespace MISA.CukCuk.Web.Controllers
         ///// CreatedBy HNANH (25/11/2020)
         //[HttpPut()]
         //// PUT api/<CustomersController>/5
-        ////TODO: Cần chỉnh sửa để trả về: Không được quyền sửa
         //public IActionResult Put(Customer customer)
         //{
         //    var serviceResult = _customerService.UpdateCustomer(customer);

@@ -86,7 +86,7 @@ namespace MISA.Infarstructure
         public IEnumerable<TEntity> GetEntities(string procedureName, string searchText)
         {
             //Thực hiện câu lệnh truy vấn
-            var entities = _dbConnection.Query<TEntity>(procedureName, new { search = searchText }, commandType: CommandType.StoredProcedure);
+            var entities = _dbConnection.Query<TEntity>(procedureName, new { searchText = searchText }, commandType: CommandType.StoredProcedure);
             //Trả về dữ liệu
             return entities;
         }

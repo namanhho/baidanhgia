@@ -1,6 +1,4 @@
-﻿
-
-class Base {
+﻿class Base {
     constructor() {
         this.host = "http://localhost:51261";
         this.apiRouter = null;
@@ -110,7 +108,60 @@ class Base {
             });
         });
         //#endregion Dialog
+        $("input[type=search]").on("search", function () {
+            debugger
+            var searchText = $(this).val();
+            //var url = new URL(me.host + me.apiRouter + "/search?procedureName=Proc_SearchEmployeesByCodeNamePhone");
+            //var searchParam = new URLSearchParams(url);
+            //searchParam.append("searchText", searchText);
+            var url = me.host + me.apiRouter + "/search?procedureName=Proc_SearchEmployeesByCodeNamePhone" + "&searchText=" + searchText;
+            $.ajax({
+                url: url,
+                method: "GET",
+            }).done(function (res) {
+                debugger
+                $("table tbody tr").remove();
 
+                $.each(res, function (index, obj) {
+                    var tr = $(`<tr></tr>`);
+                    var entityId = me.objName + "Id";
+                    tr.data("recordid", obj[entityId]);
+                    tr.data("customer", obj);
+
+                    var ths = $("table thead th");
+                    $.each(ths, function (index, th) {
+                        var td = $(`<td></td>`);
+
+                        var fieldName = $(th).attr("fieldName");
+                        var value = obj[fieldName];
+                        var formatType = $(th).attr("formatType");
+                        switch (formatType) {
+                            case "ddmmyyyy":
+                                value = formatDate(value);
+                                td.addClass("align-center");
+                                break;
+                            case "money":
+                                value = formatMoney(value);
+                                td.addClass("align-right");
+                                break;
+                            case "address":
+                                td.addClass("fix-width-table align-salary");
+                                $(".fix-width-table").attr("title", value);
+                            default:
+                        }
+                        //$(tr).data('keyId', obj['CustomerId']);
+                        //$(tr).data('data', obj);
+                        //  debugger
+                        $(td).append(value);
+                        $(tr).append(td);
+                    });
+                    $("table tbody").append(tr);
+                    $(".loading").hide();
+                });
+            }).fail(function (res) {
+
+            })
+        })
         //#region "Sự kiện với chuột" // dùng region để gộp các đoạn code giúp dễ quản lý và sửa đổi  
 
         //Hiển thị thông tin chi tiết khi nhấn đúp chuột chọn 1 dòng trong bảng
@@ -267,8 +318,8 @@ class Base {
                                 $(".fix-width-table").attr("title", value);
                             default:
                         }
-                        $(tr).data('keyId', obj['CustomerId']);
-                        $(tr).data('data', obj);
+                        //$(tr).data('keyId', obj['CustomerId']);
+                        //$(tr).data('data', obj);
                         //  debugger
                         $(td).append(value);
                         $(tr).append(td);
@@ -357,6 +408,8 @@ class Base {
                     url: me.host + me.apiRouter + api,
                     method: "GET",
                 }).done(function (res) {
+
+                    //TODO chưa hợp lý cần điều chỉnh
                     var entity = res[0];
                     var entityCode = "";
                     entityCode = entity["EmployeeCode"];

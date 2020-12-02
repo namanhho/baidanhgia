@@ -5678,19 +5678,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hnanh\\.nuget\\packages\\": {}
+    "C:\\Users\\Nam Anh\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hnanh\\Desktop\\Fresher102020\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.Infarstructure\\MISA.Infarstructure.csproj",
+      "projectUniqueName": "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.Infarstructure\\MISA.Infarstructure.csproj",
       "projectName": "MISA.Infarstructure",
-      "projectPath": "C:\\Users\\hnanh\\Desktop\\Fresher102020\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.Infarstructure\\MISA.Infarstructure.csproj",
-      "packagesPath": "C:\\Users\\hnanh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hnanh\\Desktop\\Fresher102020\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.Infarstructure\\obj\\",
+      "projectPath": "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.Infarstructure\\MISA.Infarstructure.csproj",
+      "packagesPath": "C:\\Users\\Nam Anh\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.Infarstructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\hnanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Nam Anh\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5702,10 +5702,9 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\hnanh\\Desktop\\Fresher102020\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj": {
-              "projectPath": "C:\\Users\\hnanh\\Desktop\\Fresher102020\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj"
+            "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj": {
+              "projectPath": "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj"
             }
           }
         }
@@ -5718,7 +5717,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Dapper": {
             "target": "Package",
@@ -5748,7 +5746,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

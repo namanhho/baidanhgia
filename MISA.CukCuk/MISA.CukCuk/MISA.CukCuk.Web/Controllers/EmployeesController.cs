@@ -27,9 +27,9 @@ namespace MISA.CukCuk.Web.Controllers
             return Ok(entities);
         }
         [HttpGet("search")]
-        public IActionResult GetEntitiesByCodeNamePhone([FromQuery] string procedureName, [FromQuery] string searchtext)
+        public IActionResult GetEntitiesByCodeNamePhone([FromQuery] string procedureName, [FromQuery] string searchText)
         {
-            var entities = _employeeService.GetEmployeeByCodeNamePhone(procedureName, searchtext);
+            var entities = _employeeService.GetEmployeeByCodeNamePhone(procedureName, searchText);
             return Ok(entities);
         }
         // GET: api/<EmployeesController>

@@ -52,7 +52,7 @@ namespace MISA.ApplicationCore.Entities
                 {
                     case 0: return "Nữ";
                     case 1: return "Nam";
-                    case 3: return "Khác";
+                    case 2: return "Khác";
                     default: return "Không xác định";
                 }
             }
@@ -124,7 +124,7 @@ namespace MISA.ApplicationCore.Entities
                 {
                     case 0: return "Đã nghỉ việc";
                     case 1: return "Đang thử việc";
-                    case 3: return "Đang làm việc";
+                    case 2: return "Đang làm việc";
                     default:
                         return "Không xác định";
                 }
