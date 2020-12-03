@@ -6,9 +6,14 @@ class Base {
         this.apiRouter = null;
         this.setApiRouter();
         this.objName = null;
+        this.endPoint = "";
+        this.setEndPoint();
         this.setObjName();
         this.initEvent();
         this.loadData();
+    }
+    setEndPoint() {
+
     }
     setApiRouter() {
 
@@ -121,29 +126,27 @@ class Base {
             $(this).addClass("rowSelected");
         })
 
-        $("table tbody").on('contextmenu', 'tr', function (e) {
-            //alert("mouse right on click")
+        //$("table tbody").on('contextmenu', 'tr', function (e) {
+        //    //alert("mouse right on click")
 
-            //hiện thị menu
-            $(this).siblings().removeClass('rowSelected');
-            $(this).addClass('rowSelected');
-            $('.menu-show').css({
-                top: e.pageY + 'px',
-                // left: e.pageX + 'px'
-                right: 16 + 'px'
-            }).show();
-            //   me.showDialogOnClick();
-            debugger
-            return false;
-        });
+        //    //hiện thị menu
+        //    $(this).siblings().removeClass('rowSelected');
+        //    $(this).addClass('rowSelected');
+        //    $('.menu-show').css({
+        //        top: e.pageY + 'px',
+        //        // left: e.pageX + 'px'
+        //        right: 16 + 'px'
+        //    }).show();
+        //    //   me.showDialogOnClick();
+        //    debugger
+        //    return false;
+        //});
 
         //sự kiện click khi ấn nút chuyển trang
         $(".button-bottom-bar").focus(this.btnChangePageOnFocus);
-
         //#endregion "Sự kiện với chuột"
 
         //#region "Validate Kiểm tra input" // dùng region để gộp các đoạn code giúp dễ quản lý và sửa đổi
-
         /*
          * Validate bắt buộc nhập
          *CreatedBy: HNANH (14/11/2020)
@@ -200,7 +203,7 @@ class Base {
         $('input[codeAuto]').blur(function () {
             //kiểm tra dữ liệu đã nhập, nếu để trống thì cảnh báo
             var value = $(this).val().trim();  //.trim() để đảm bảo khi người dùng nhập toàn dấu cách thì value vẫn sẽ là null;
-            var check = /NV-[0-9]{10}/.test(value);
+            var check = /NV-[0-9]{1,10}/.test(value);
            
             //Kiểm tra dữ liệu có bị trùng không
             if (!check) {
@@ -215,6 +218,13 @@ class Base {
             }
         });
 
+        $(".search-table select[type=search]").on("change", function () {
+            var selects = $(".search-table select[type=search]");
+            $.each(selects, function (index, select) {
+                
+            })
+        })
+
         //#endregion "Validate Kiểm tra input"
     }
 
@@ -224,6 +234,7 @@ class Base {
     loadData() {
         var me = this;
         try {
+            debugger
             var entityId = me.objName + "Id";
             $(".loading").show();
             //xóa hết dữ liệu bảng trước khi nạp, tránh bị nạp tiếp vào dữ liệu đã có
@@ -238,15 +249,12 @@ class Base {
 
             //Lấy thông tin dữ liệu sẽ map tương ứng với các cột
             $.ajax({
-                url: this.host + this.apiRouter,
+                url: this.host + this.apiRouter + this.endPoint,
                 method: "GET",
             }).done(function (res) {
-
-
                 $.each(res, function (index, obj) {
                     var tr = $(`<tr></tr>`);
                     tr.data("recordid", obj[entityId]);
-                    tr.data("customer", obj);
                     $.each(ths, function (index, th) {
                         var td = $(`<td></td>`);
 
@@ -267,8 +275,8 @@ class Base {
                                 $(".fix-width-table").attr("title", value);
                             default:
                         }
-                        $(tr).data('keyId', obj['CustomerId']);
-                        $(tr).data('data', obj);
+                        //$(tr).data('keyId', obj['CustomerId']);
+                        //$(tr).data('data', obj);
                         //  debugger
                         $(td).append(value);
                         $(tr).append(td);
@@ -280,6 +288,41 @@ class Base {
                 $(".loading").show();
                 me.openPopUpMessenger("danger", "Thực hiện lỗi, vui lòng kiểm tra lại");
             })
+
+
+            ////load dữ liệu cho các combobox 
+            //var selects = $('.search-table select[selectName]');
+
+            ////xử lý xóa các option trước để tránh bị trùng khi nhấn button add các lần tiếp theo
+            ////$('select option').remove();
+            //selects.empty();
+
+            ////hiện thị icon load khi dữ liệu đang được tải
+            //$(".loading").show();
+
+            //$.each(selects, function (index, select) {
+            //    var api = $(this).attr("api");
+            //    var fieldName = $(this).attr("selectName");
+            //    var fieldValue = $(this).attr("selectValue");
+            //    //lấy dữ liệu nhóm khách hàng
+            //    $.ajax({
+            //        url: me.host + api,
+            //        method: "GET",
+            //    }).done(function (res) {
+            //        if (res) {
+            //            $.each(res, function (index, obj) {
+            //                var option = $(`<option value=` + obj[fieldName] + `>` + obj[fieldValue] + `</option>`)
+            //                $(select).append(option);
+            //            })
+            //        }
+            //        //$(".loading").hide();
+            //        debugger
+            //    }).fail(function (res) {
+            //        $(".loading").hide();
+            //        me.openPopUpMessenger("danger", "Thực hiện lỗi, vui lòng kiểm tra lại");
+            //        debugger
+            //    })
+            //})
         } catch (e) {
             console.log(e);
         }
@@ -314,7 +357,7 @@ class Base {
             })
 
             //load dữ liệu cho các combobox 
-            var selects = $('select[selectName]');
+            var selects = $('.m-dialog select[selectName]');
 
             //xử lý xóa các option trước để tránh bị trùng khi nhấn button add các lần tiếp theo
             //$('select option').remove();
@@ -374,11 +417,6 @@ class Base {
                 })
                
             })
-            
-
-            
-
-
         } catch (e) {
             console.log(e);
         }
@@ -407,7 +445,7 @@ class Base {
             //thu thập thông tin dữ liệu được nhập-> buil thành obj
 
             // lấy tất cả các control nhập liệu
-            var inputs = $('input[fieldName], select[fieldName]');
+            var inputs = $('input[fieldName], .m-dialog select[fieldName]');
             var entity = {};
             $.each(inputs, function (index, input) {
                 var propertyName = $(input).attr('fieldName');
@@ -481,7 +519,7 @@ class Base {
         try {
             var me = this;
             //load dữ liệu cho các combobox 
-            var selects = $('select[selectName]');
+            var selects = $('.m-dialog select[selectName]');
             var api = selects.attr("api");
             $("input").removeClass("border-red");
             //xử lý xóa các option trước để tránh bị trùng khi nhấn button add các lần tiếp theo
@@ -535,7 +573,7 @@ class Base {
 
                 //Build thành obj vào đẩy tương ứng vào form
                 var datas = res;
-                var inputs = $('input[fieldName], select[fieldName]');
+                var inputs = $('.m-dialog input[fieldName], .m-dialog select[fieldName]');
                 $.each(inputs, function (index, input) {
                     var propertyName = $(input).attr('fieldName');
                     var value = datas[propertyName];
@@ -644,11 +682,11 @@ class Base {
                 url: me.host + me.apiRouter + `/${recordId}`,
                 method: "GET",
             }).done(function (res) {
-                var customerName = res["FullName"];
-                var customerCode = res["CustomerCode"];
+                var entityName = res["FullName"];
+                var entityCode = res[`${me.objName}Code`];
 
                 $(".body-pop-up .content-pop-up-warning").text("Bạn có chắc chắn muốn xóa khách hàng "
-                    + customerName + " (Mã khách hàng " + customerCode + ") không ? ");
+                    + entityName + " (Mã khách hàng " + entityCode + ") không ? ");
                 $("span.ui-dialog-title").text('Xác nhận xóa bản ghi');
                 dialogWarning.dialog("open");
                 $(".m-seconds-button-2").blur();

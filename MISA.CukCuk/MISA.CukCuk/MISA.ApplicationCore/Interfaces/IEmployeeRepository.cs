@@ -7,6 +7,7 @@ namespace MISA.ApplicationCore.Interfaces
 {
     public interface IEmployeeRepository: IBaseRepository<Employee>
     {
+        IEnumerable<Employee> GetEmployeesFilter(string searchText, Guid? departmentId, Guid? positionId);
         /// <summary>
         /// Lấy khách hàng qua mã khách hàng
         /// </summary>

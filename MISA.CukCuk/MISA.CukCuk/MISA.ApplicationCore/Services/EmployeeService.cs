@@ -18,10 +18,18 @@ namespace MISA.ApplicationCore.Services
         {
             return _employeeRepository.GetEntities(procedureName, searchText);
         }
-
+        public IEnumerable<Employee> GetEmployeeByPositionDepartment(string procedureName, string positionId, string departmentId)
+        {
+            return _employeeRepository.GetEntities(procedureName, positionId, departmentId);
+        }
         public IEnumerable<Employee> GetEmployeeByProc(string procedureName)
         {
            return _employeeRepository.GetEntities(procedureName);
+        }
+
+        public IEnumerable<Employee> GetEmployeesFilter(string searchText, Guid? departmentId, Guid? positionId)
+        {
+            return _employeeRepository.GetEmployeesFilter(searchText, departmentId, positionId);
         }
     }
         //IEmployeeRepository _employeeRepository;

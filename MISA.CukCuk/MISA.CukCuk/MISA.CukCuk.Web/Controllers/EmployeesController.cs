@@ -32,6 +32,18 @@ namespace MISA.CukCuk.Web.Controllers
             var entities = _employeeService.GetEmployeeByCodeNamePhone(procedureName, searchtext);
             return Ok(entities);
         }
+
+        [HttpGet("searchbypositiondepartment")]
+        public IActionResult GetEntitiesByPositionDepartment([FromQuery] string procedureName, [FromQuery] string positionId, [FromQuery] string departmentId)
+        {
+            var entities = _employeeService.GetEmployeeByPositionDepartment(procedureName, positionId, departmentId);
+            return Ok(entities);
+        }
+        [HttpGet("filter")]
+        public IActionResult GetEmployeesFilter(string searchText, Guid? departmentId, Guid? positionId)
+        {
+            return Ok(_employeeService.GetEmployeesFilter(searchText, departmentId, positionId));
+        }
         // GET: api/<EmployeesController>
         //[HttpGet]
         //public IEnumerable<Employee> Get()

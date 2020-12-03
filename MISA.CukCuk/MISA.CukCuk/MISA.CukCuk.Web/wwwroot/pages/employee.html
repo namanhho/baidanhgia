@@ -16,7 +16,7 @@
         <div class="logo-site">
             <div class="logo-box">
                 <div class="toggle-icon"></div>
-                <div class="amis-logo"></div>m
+                <div class="amis-logo"></div>
             </div>
 
         </div>
@@ -65,40 +65,40 @@
         <div class="toolbar-of-table">
             <div class="title-toolbar"><h1>Quản lý lao động</h1></div>
             <div class="button-toolbar">
-                <button type="button" class="m-button-icon margin-button">
+                <!--<button type="button" class="m-button-icon margin-button">
                     <i class="fas fa-sync-alt icon-syncing"></i>
                     <div class="title-button-icon">Đồng bộ từ HRM</div>
-                </button>
-                <button type="button" id="btn-add" class="btn-add m-button-icon margin-button" style="border-radius: 4px 0 0 4px;">
+                </button>-->
+                <button type="button" id="btn-add" class="btn-add m-button-icon margin-button">
                     <i class="fas fa-user-plus icon-add-labor"></i>
                     <div class="title-button-icon">Thêm lao động</div>
                 </button>
-                <button type="button" class="m-button-only-icon button-dropdown">
+                <!--<button type="button" class="m-button-only-icon button-dropdown">
                     <i class="fas fa-caret-down fa-lg icon-dropdown"></i>
-                </button>
+                </button>-->
             </div>
         </div>
         <div class="search-table">
             <div class="type-search">
                 <div class="search-by-id">
-                    <input class="field-input-icon" style="width: 200px; margin-left: 16px;" placeholder="Tìm kiếm theo Mã, Tên hoặc Số điện thoại" />
+                    <input type="search" class="field-input-icon" style="width: 300px; margin-left: 16px;" placeholder="Tìm kiếm theo Mã, Tên hoặc Số điện thoại" />
                 </div>
                 <div class="choose-department" style="margin-left: 16px;">
-                    <select class="m-select-dialog" style="width: 200px;" fieldName="DepartmentId" selectName="DepartmentId" selectValue="DepartmentName" api="/api/v1/departments">
-                        <option selected="">Tất cả phòng ban</option>
+                    <select type="search" id="searchDepartment" class="m-select-dialog" style="width: 200px;" fieldName="DepartmentId" selectName="DepartmentId" selectValue="DepartmentName" api="/api/v1/departments">
+                        <!--<option selected="">Tất cả phòng ban</option>
                         <option value="hr-department">Phòng Nhân Sự</option>
                         <option value="traning-department">Phòng Đào Tạo</option>
-                        <option value="research-department">Phòng Nghiên Cứu</option>
+                        <option value="research-department">Phòng Nghiên Cứu</option>-->
                     </select>
                 </div>
                 <div class="choose-position" style="margin-left: 16px;">
-                    <select class="m-select-dialog" style="width: 200px;" fieldName="PositionId" selectName="PositionId" selectValue="PositionName" api="/api/v1/positions">
-                        <option selected="">Tất cả vị trí</option>
+                    <select type="search" id="searchPosition" class="m-select-dialog" style="width: 200px;" fieldName="PositionId" selectName="PositionId" selectValue="PositionName" api="/api/v1/positions">
+                        <!--<option selected="">Tất cả vị trí</option>
                         <option value="hr-department">Giám Đốc</option>
                         <option value="traning-department">Phó Giám Đốc</option>
                         <option value="research-department">Trưởng Phòng</option>
                         <option value="research-department">Phó Trưởng Phòng</option>
-                        <option value="research-department">Nhân Viên</option>
+                        <option value="research-department">Nhân Viên</option>-->
                     </select>
                 </div>
             </div>
@@ -112,7 +112,7 @@
                         <i class="fas fa-trash-alt icon-add-labor"></i>
                         <div class="title-button-icon">Xóa</div>
                     </button>
-                    <button type="button" class="m-button-only-icon"><i class="fas fa-download icon-download"></i></button>
+                    <!--<button type="button" class="m-button-only-icon"><i class="fas fa-download icon-download"></i></button>-->
                     <button type="button" id="btnRefresh" class="m-button-only-icon"><i class="fas fa-sync icon-syncing"></i></button>
                 </div>
             </div>
@@ -131,7 +131,7 @@
                             <th fieldName="PositionName">Chức vụ<i class="fas fa-sort icon-sort"></i></th>
                             <th fieldName="DepartmentName">Phòng Ban<i class="fas fa-sort icon-sort"></i></th>
                             <th fieldName="Salary" formatType="money">Mức lương hiện tại<i class="fas fa-sort icon-sort"></i></th>
-                            <th fieldName="Address" formatType="address" class="fix-width-table align-salary">Địa chỉ<i class="fas fa-sort icon-sort"></i></th>
+                            <!--<th fieldName="Address" formatType="address" class="fix-width-table align-salary">Địa chỉ<i class="fas fa-sort icon-sort"></i></th>-->
                             <th fieldName="WorkStatusName">Tình trạng công việc<i class="fas fa-sort icon-sort"></i></th>
                             <!--<th class="fix-width-table align-salary">Hệ số Mức lương tham gia BHXH<i class="fas fa-sort icon-sort"></i></th>-->
 
@@ -155,7 +155,7 @@
             </div>
             <div class="nav-page">
                 <div class="title-nav-page">Hiển thị 1-15/59 lao động</div>
-                <div class="button-nav-page">
+                <!--<div class="button-nav-page">
                     <button class="button-bottom-bar button-back-page">
                         <i class="fas fa-chevron-left"></i>
                     </button>
@@ -166,7 +166,7 @@
                     <button class="button-bottom-bar button-next-page">
                         <i class="fas fa-chevron-right"></i>
                     </button>
-                </div>
+                </div>-->
                 <div class="button-control-show">
                     <button type="button" class="button-change-show-table">
                         15/Trang
@@ -277,8 +277,8 @@
                         <div class="m-flex-1 m-dialog-left">
                             <div class="m-label">Mức lương cơ bản</div>
                             <div style="position: relative;">
-                                <input type="text" style="padding-right:10px" typeName="money" fieldName="Salary" id="txtSalary" class="field-input input-money" />
-                                <i style="position: absolute; right: 16px; line-height: 40px; font-weight: bold;">(VNĐ)</i>
+                                <input type="text" style="padding-right:50px; padding-left:10px;" typeName="money" fieldName="Salary" id="txtSalary" class="field-input input-money" />
+                                <i style="position: absolute; right: 10px; line-height: 40px; font-weight: bold;">(VNĐ)</i>
                             </div>
                         </div>
                     </div>

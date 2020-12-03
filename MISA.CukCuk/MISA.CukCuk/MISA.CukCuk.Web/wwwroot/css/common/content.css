@@ -141,7 +141,7 @@
 table {
     border-collapse: collapse;
     margin-left: 16px;
-    width: 100%;
+    width: calc(100% - 16px);
 }
 tr{
     display: flex:
@@ -179,6 +179,7 @@ table tbody tr:hover {
     height: 50px;
     width: 100%;
     display: flex;
+    position: relative;
     border-top: 1px double #bbbbbb;
 }
 
@@ -231,7 +232,9 @@ table tbody tr:hover {
 
 .nav-page .button-control-show {
     width: 20%;
-    position: relative;
+    height: 100%;
+    position: absolute;
+    right: 0;
     display: flex;
     border-radius: 4px;
 }

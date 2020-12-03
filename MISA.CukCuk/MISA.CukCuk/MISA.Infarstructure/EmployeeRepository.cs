@@ -27,9 +27,25 @@ namespace MISA.Infarstructure
             throw new NotImplementedException();
         }
 
+
         public Employee GetEmployeeByCode(string employeeCode)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<Employee> GetEmployeesFilter(string searchText, Guid? departmentId, Guid? positionId)
+        {
+            var inputs = (searchText != null) ? searchText : "";
+            var param = new DynamicParameters();
+            param.Add("@EmployeeCode", inputs, DbType.String);
+            param.Add("@FullName", inputs, DbType.String);
+            param.Add("@PhoneNumber", inputs, DbType.String);
+            param.Add("@DepartmentId", departmentId, DbType.String);
+            param.Add("@PositionId", positionId, DbType.String);
+
+            var employees = _dbConnection.Query<Employee>("Proc_GetEmployeesFilter", param, commandType: CommandType.StoredProcedure);
+            return employees;
+
         }
     }
         //#region Declare

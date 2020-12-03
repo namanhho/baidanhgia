@@ -30,12 +30,81 @@ class EmployeeJs extends Base {
         super();
         //  this.initEvent();
     }
+    initEvent() {
+        super.initEvent();
+        var me = this;
 
+        me.loadComboboxData();
+
+        $(".search-table input[type=search],select[type=search],select[type=search]").on("blur", function () {
+            debugger
+            //this.setEndPoint();
+            var searchText = $(".search-table input[type=search]").val();
+            var departmentId = $(".search-table #searchDepartment").val();
+            var positionId = $(".search-table #searchPosition").val();
+
+            var query = "";
+            var queryString= query.concat("/filter?searchText=", searchText, "&departmentId=", departmentId, "&positionId=", positionId);
+            me.endPoint = queryString;
+            me.reLoadData();
+        })
+
+        //$("body:not(.content-main .content-table)").click(function () {
+        //    alert("not table");
+        //})
+    }
+    /**
+     * Hàm load lại dữ liệu
+     * CreatedBy HNANH(3/12/2020)
+     * */
+    reLoadData() {
+        super.loadData();
+    }
+    setEndPoint() {
+        debugger
+    }
     setApiRouter() {
         this.apiRouter = '/api/v1/employees';
     }
     setObjName() {
         this.objName = "Employee";
+    }
+
+    loadComboboxData() {
+        var me = this;
+        //load dữ liệu cho các combobox 
+        var selects = $('.search-table select[selectName]');
+
+        //xử lý xóa các option trước để tránh bị trùng khi nhấn button add các lần tiếp theo
+        //$('select option').remove();
+        selects.empty();
+
+        //hiện thị icon load khi dữ liệu đang được tải
+        $(".loading").show();
+
+        $.each(selects, function (index, select) {
+            var api = $(this).attr("api");
+            var fieldName = $(this).attr("selectName");
+            var fieldValue = $(this).attr("selectValue");
+            //lấy dữ liệu nhóm khách hàng
+            $.ajax({
+                url: me.host + api,
+                method: "GET",
+            }).done(function (res) {
+                if (res) {
+                    $.each(res, function (index, obj) {
+                        var option = $(`<option value=` + obj[fieldName] + `>` + obj[fieldValue] + `</option>`)
+                        $(select).append(option);
+                    })
+                }
+                //$(".loading").hide();
+                debugger
+            }).fail(function (res) {
+                $(".loading").hide();
+                me.openPopUpMessenger("danger", "Thực hiện lỗi, vui lòng kiểm tra lại");
+                debugger
+            })
+        })
     }
     /**
      * set url lấy dữ liệu
