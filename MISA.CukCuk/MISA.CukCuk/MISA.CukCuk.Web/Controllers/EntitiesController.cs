@@ -15,12 +15,24 @@ namespace MISA.CukCuk.Web.Controllers
     [ApiController]
     public class EntitiesController<TEntity> : ControllerBase
     {
+        #region Declare
         IBaseService<TEntity> _baseService;
+        #endregion
+
+        #region Constructor
         public EntitiesController(IBaseService<TEntity> baseService)
         {
             _baseService = baseService;
         }
-        // GET: api/<EntitiesController>
+        #endregion
+
+        #region Method
+        // GET: api/v1/<EntitiesController>
+        /// <summary>
+        /// Lấy danh sách đối tượng
+        /// </summary>
+        /// <returns>Trạng thái HTTP và danh sách thực thể</returns>
+        /// CreatedBy HNANH (25/11/2020)
         [HttpGet]
         public IActionResult Get()
         {
@@ -28,7 +40,13 @@ namespace MISA.CukCuk.Web.Controllers
             return Ok(entities);
         }
 
-        // GET api/<EntitiesController>/5
+        // GET api/v1/<EntitiesController>/5
+        /// <summary>
+        /// Lấy danh sách đối tượng theo Id của đối tượng
+        /// </summary>
+        /// <param name="entityId">Id của đối tượng</param>
+        /// <returns>Trạng thái HTTP và danh sách đối tượng</returns>
+        /// CreatedBy: HNANH (25/11/2020)
         [HttpGet("{entityId}")]
         public IActionResult Get(string entityId)
         {
@@ -36,7 +54,13 @@ namespace MISA.CukCuk.Web.Controllers
             return Ok(entity);
         }
 
-        // POST api/<EntitiesController>
+        // POST api/v1/<EntitiesController>
+        /// <summary>
+        /// Thêm mới đối tượng
+        /// </summary>
+        /// <param name="entity">Thông tin đối tượng</param>
+        /// <returns>Trạng thái HTTP và thông tin nghiệp vụ</returns>
+        /// CreatedBy: HNANH (25/11/2020)
         [HttpPost]
         public IActionResult Post(TEntity entity)
         {
@@ -48,7 +72,14 @@ namespace MISA.CukCuk.Web.Controllers
             else return Created("Thêm thành công", serviceResult);
         }
 
-        // PUT api/<EntitiesController>/5
+        // PUT api/v1/<EntitiesController>/5
+        /// <summary>
+        /// Cập nhật thông tin đối tượng
+        /// </summary>
+        /// <param name="id">Mã đối tượng</param>
+        /// <param name="entity">Thông tin đối tượng</param>
+        /// <returns>Trạng thái HTTP và thông tin nghiệp vụ</returns>
+        /// CreatedBy: HNANH (25/11/2020)
         [HttpPut("{id}")]
         public IActionResult Put([FromRoute]string id, TEntity entity)
         {
@@ -77,7 +108,13 @@ namespace MISA.CukCuk.Web.Controllers
             else return Ok(serviceResult);
         }
 
-        // DELETE api/<EntitiesController>/5
+        // DELETE api/v1/<EntitiesController>/5
+        /// <summary>
+        /// Xóa đối tượng
+        /// </summary>
+        /// <param name="entityId">Id của đối tượng</param>
+        /// <returns>Trạng thái HTTP và dữ liệu nghiệp vụ</returns>
+        /// CreatedBy: HNANH (25/11/2020)
         [HttpDelete("{entityId}")]
         public IActionResult Delete(string entityId)
         {
@@ -88,5 +125,6 @@ namespace MISA.CukCuk.Web.Controllers
             }
             else return Ok(serviceResult);
         }
+        #endregion
     }
 }

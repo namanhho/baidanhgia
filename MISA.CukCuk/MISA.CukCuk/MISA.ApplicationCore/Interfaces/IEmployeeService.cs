@@ -5,6 +5,9 @@ using System.Text;
 
 namespace MISA.ApplicationCore.Interfaces
 {
+    /// <summary>
+    /// Interface xử lý nghiệp vụ cho riêng Employee
+    /// </summary>
     public interface IEmployeeService: IBaseService<Employee>
     {
         /// <summary>
@@ -12,25 +15,17 @@ namespace MISA.ApplicationCore.Interfaces
         /// </summary>
         /// <param name="procedureName">Tên StoreProcedure</param>
         /// <returns>Danh sách nhân viên</returns>
-        /// CreatedBy: HNANH (3/12/20200
+        /// CreatedBy: HNANH (3/12/2020)
         IEnumerable<Employee> GetEmployeeByProc(string procedureName);
+
         /// <summary>
-        /// Tìm kiếm danh sách nhân viên theo từ khóa(theo mã, tên hoặc số điện thoại)
+        /// Lấy danh sách nhân viên theo từ khóa tìm kiếm, phòng ban, vị trí/chức vụ
         /// </summary>
-        /// <param name="procedureName">Tên StoreProcedure</param>
-        /// <param name="searchText">Từ khóa tìm kiếm (theo mã, tên hoặc số điện thoại)</param>
+        /// <param name="searchText">Từ khóa tìm kiếm: mã nhân viên, tên nhân viên hoặc số điện thoại</param>
+        /// <param name="departmentId">Id phòng ban</param>
+        /// <param name="positionId">Id vị trí/chức vụ</param>
         /// <returns>Danh sách nhân viên</returns>
-        /// CreatedBy: HNANH(3/12/2020)
-        IEnumerable<Employee> GetEmployeeByCodeNamePhone(string procedureName, string searchText);
-        /// <summary>
-        /// Tìm kiếm danh sách nhân viên theo vị trí/chứ vụ, phòng ban
-        /// </summary>
-        /// <param name="procedureName">Tên StoreProcedure</param>
-        /// <param name="positionId">Mã vị trí/chức vụ</param>
-        /// <param name="departmentId">Mã phòng ban</param>
-        /// <returns>Danh sách nhân viên</returns>
-        /// CreatedBy: HNANH(3/12/2020)
-        IEnumerable<Employee> GetEmployeeByPositionDepartment(string procedureName, string positionId, string departmentId);
+        /// CreatedBy: HNANH (03/12/2020)
         IEnumerable<Employee> GetEmployeesFilter(string searchText, Guid? departmentId, Guid? positionId);
     }
 }

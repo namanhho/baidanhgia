@@ -13,17 +13,30 @@ namespace MISA.CukCuk.Web.Controllers
     [ApiController]
     public class DepartmentsController : ControllerBase
     {
+        #region Declare
         IBaseService<Department> _baseService;
+        #endregion
+
+        #region Constructor
         public DepartmentsController(IBaseService<Department> baseService)
         {
             _baseService = baseService;
         }
-        // GET: api/<EntitiesController>
+        #endregion
+
+        #region Method
+        // GET: api/v1/<EntitiesController>
+        /// <summary>
+        /// Lấy danh sách phòng ban
+        /// </summary>
+        /// <returns>Trạng thái HTTP và danh sách phòng ban</returns>
+        /// CreatedBy: HNANH (01/12/2020)
         [HttpGet]
         public IActionResult Get()
         {
             var entities = _baseService.GetEntities();
             return Ok(entities);
         }
+        #endregion
     }
 }

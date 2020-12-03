@@ -44,7 +44,7 @@ class EmployeeJs extends Base {
             var positionId = $(".search-table #searchPosition").val();
 
             var query = "";
-            var queryString= query.concat("/filter?searchText=", searchText, "&departmentId=", departmentId, "&positionId=", positionId);
+            var queryString = query.concat("/filter?searchText=", searchText, "&departmentId=", departmentId, "&positionId=", positionId);
             me.endPoint = queryString;
             me.reLoadData();
         })
@@ -74,10 +74,16 @@ class EmployeeJs extends Base {
         var me = this;
         //load dữ liệu cho các combobox 
         var selects = $('.search-table select[selectName]');
-
         //xử lý xóa các option trước để tránh bị trùng khi nhấn button add các lần tiếp theo
         //$('select option').remove();
-        selects.empty();
+        //selects.empty();
+        $.each(selects, function (index, select1) {
+            debugger
+            var optionNumber = select1.options.length;
+            for (var i = 1; i < optionNumber; i++) {
+                select1.options[i] = null;
+            }
+        })
 
         //hiện thị icon load khi dữ liệu đang được tải
         $(".loading").show();
@@ -106,30 +112,4 @@ class EmployeeJs extends Base {
             })
         })
     }
-    /**
-     * set url lấy dữ liệu
-     * CreateBy: HNANH (12/11/2020)
-     * */
-
-    
-
-    //initEvent() {
-    //    //debugger;
-    //    $(".btn-add-labor").click(this.btnAddOnClick);
-    //    $(".btn-cancel").click(this.btnCancelOnClick);
-    //  //  $(".button-bottom-bar").click(this.btnChangePageOnClick);
-    //    $(".button-bottom-bar").focus(this.btnChangePageOnClick);
-    //}
-    //btnAddOnClick() {
-    //    $(".dialog-model").show();
-    //    $(".dialog-content").show();
-    //}
-    //btnCancelOnClick() {
-    //    $(".dialog-model").hide();
-    //    $(".dialog-content").hide();
-    //}
-    //btnChangePageOnClick() {
-    //    $(this).siblings().removeClass("button-change-page-select");
-    //    $(this).addClass("button-change-page-select");
-    //}
 }

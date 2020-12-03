@@ -13,6 +13,10 @@ using System.Text;
 
 namespace MISA.Infarstructure
 {
+    /// <summary>
+    /// Thành phần dùng chung xử lý chung thao tác với Database
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
     public class BaseRepository<TEntity> : IBaseRepository<TEntity>, IDisposable where TEntity:BaseEntity
     {
         #region Declare
@@ -22,6 +26,7 @@ namespace MISA.Infarstructure
         protected string _tableName = "";
         string _entityId = "";
         #endregion
+
         #region Constructor
         public BaseRepository(IConfiguration configuration)
         {
@@ -32,41 +37,8 @@ namespace MISA.Infarstructure
             _entityId = _tableName + "Id";
         }
         #endregion
+
         #region Method
-        public int Delete(string entityId)
-        {
-            // var param = new DynamicParameters();
-            // param.Add($"@{_entityId}", entityId, DbType.String);
-            // var rowAffected = _dbConnection.Execute($"Proc_Delete{_entity}", param, commandType: CommandType.StoredProcedure);
-
-            
-            //var a = $"DELETE FROM {_tableName} WHERE {_tableName}Id = '{entityId}'";
-            //var rowAffected = _dbConnection.Execute($"DELETE FROM {_tableName} WHERE {_tableName}Id = '{entityId}'", commandType: CommandType.Text);
-            //return rowAffected;
-            var rowAffected = 0;
-            _dbConnection.Open();
-            using (var transaction = _dbConnection.BeginTransaction())
-            {
-                rowAffected = _dbConnection.Execute($"DELETE FROM {_tableName} WHERE {_tableName}Id = '{entityId}'", commandType: CommandType.Text);
-                transaction.Commit();
-            }
-            return rowAffected;
-
-        }
-
-
-        public TEntity GetEntityById(string entityId)
-        {
-            var param = new DynamicParameters();
-            param.Add($"@{_entityId}", entityId, DbType.String);
-            //var entity = _dbConnection.Query<TEntity>($"Proc_Get{_entity}ById", new { _entityId = entityId }, commandType: CommandType.StoredProcedure).FirstOrDefault();
-            var entity = _dbConnection.Query<TEntity>($"Proc_Get{_tableName}ById", param, commandType: CommandType.StoredProcedure).FirstOrDefault();
-
-            //var a = $"SELECT * FROM {_entity} WHERE {_entity}Id = '{entityId}'";
-            //var entity = _dbConnection.Query<TEntity>($"SELECT * FROM {_entity} WHERE {_entity}Id = '{entityId}'", commandType: CommandType.Text).FirstOrDefault();
-            return entity;
-        }
-
         public IEnumerable<TEntity> GetEntities()
         {
             //Thực hiện câu lệnh truy vấn
@@ -83,20 +55,16 @@ namespace MISA.Infarstructure
             return entities;
         }
 
-        public IEnumerable<TEntity> GetEntities(string procedureName, string searchText)
+        public TEntity GetEntityById(string entityId)
         {
-            //Thực hiện câu lệnh truy vấn
-            var entities = _dbConnection.Query<TEntity>(procedureName, new { searchText = searchText }, commandType: CommandType.StoredProcedure);
-            //Trả về dữ liệu
-            return entities;
-        }
+            var param = new DynamicParameters();
+            param.Add($"@{_entityId}", entityId, DbType.String);
+            //var entity = _dbConnection.Query<TEntity>($"Proc_Get{_entity}ById", new { _entityId = entityId }, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            var entity = _dbConnection.Query<TEntity>($"Proc_Get{_tableName}ById", param, commandType: CommandType.StoredProcedure).FirstOrDefault();
 
-        public IEnumerable<TEntity> GetEntities(string procedureName, string positionId, string departmentId)
-        {
-            //Thực hiện câu lệnh truy vấn
-            var entities = _dbConnection.Query<TEntity>(procedureName, new { PositionId = positionId, Departmentid= departmentId }, commandType: CommandType.StoredProcedure);
-            //Trả về dữ liệu
-            return entities;
+            //var a = $"SELECT * FROM {_entity} WHERE {_entity}Id = '{entityId}'";
+            //var entity = _dbConnection.Query<TEntity>($"SELECT * FROM {_entity} WHERE {_entity}Id = '{entityId}'", commandType: CommandType.Text).FirstOrDefault();
+            return entity;
         }
 
         public int Insert(TEntity entity)
@@ -125,6 +93,38 @@ namespace MISA.Infarstructure
             return rowAffected;
         }
 
+        public int Delete(string entityId)
+        {
+            var rowAffected = 0;
+            _dbConnection.Open();
+            using (var transaction = _dbConnection.BeginTransaction())
+            {
+                rowAffected = _dbConnection.Execute($"DELETE FROM {_tableName} WHERE {_tableName}Id = '{entityId}'", commandType: CommandType.Text);
+                transaction.Commit();
+            }
+            return rowAffected;
+
+        }
+
+        public TEntity GetEntityByProperty(TEntity entity, PropertyInfo property)
+        {
+            var propertyName = property.Name;
+            var propertyValue = property.GetValue(entity);
+            var keyValue = entity.GetType().GetProperty($"{_tableName}Id").GetValue(entity);
+            var query = string.Empty;
+            if (entity.EntityState == EntityState.AddNew)
+            {
+                query = $"SELECT * FROM {_tableName} WHERE {propertyName} = '{propertyValue}'";
+            }
+            else if (entity.EntityState == EntityState.Update)
+            {
+                query = $"SELECT * FROM {_tableName} WHERE {propertyName} = '{propertyValue}' AND {_tableName}Id != '{keyValue}'";
+            }
+            else return null;
+            var entityDuplicate = _dbConnection.Query<TEntity>(query, commandType: CommandType.Text).FirstOrDefault();
+            return entityDuplicate;
+        }
+
         /// <summary>
         /// Xử lý chuyển kiểu từ GUID sang string
         /// </summary>
@@ -132,7 +132,6 @@ namespace MISA.Infarstructure
         /// <param name = "entity" > Thực thể</param>
         /// <returns>Đối tượng sau khi được chuyển kiểu</returns>
         /// CreatedBy: HNANH(26/11/2020)
-
         private DynamicParameters MappingDbType<TEntity>(TEntity entity)
         {
             var properties = entity.GetType().GetProperties();
@@ -158,25 +157,6 @@ namespace MISA.Infarstructure
                 }
             }
             return param;
-        }
-
-        public TEntity GetEntityByProperty(TEntity entity, PropertyInfo property)
-        {
-            var propertyName = property.Name;
-            var propertyValue = property.GetValue(entity);
-            var keyValue = entity.GetType().GetProperty($"{_tableName}Id").GetValue(entity);
-            var query=string.Empty;
-            if (entity.EntityState == EntityState.AddNew)
-            {
-                query = $"SELECT * FROM {_tableName} WHERE {propertyName} = '{propertyValue}'";
-            }
-            else if (entity.EntityState == EntityState.Update)
-            {
-                query = $"SELECT * FROM {_tableName} WHERE {propertyName} = '{propertyValue}' AND {_tableName}Id != '{keyValue}'";
-            }
-            else return null;
-            var entityDuplicate = _dbConnection.Query<TEntity>(query, commandType: CommandType.Text).FirstOrDefault();
-            return entityDuplicate;
         }
 
         public void Dispose()

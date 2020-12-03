@@ -15,6 +15,7 @@ namespace MISA.ApplicationCore.Interfaces
         /// <returns>Danh sách khách hàng được phân trang phù hợp</returns>
         /// CreatedBy HNANH (27/11/2020)
         IEnumerable<Customer> GetCustomerPaging(int limit, int offset);
+
         /// <summary>
         /// Lấy danh sách khách hàng qua mã nhóm khách hàng
         /// </summary>

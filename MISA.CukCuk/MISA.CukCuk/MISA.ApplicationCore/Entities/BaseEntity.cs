@@ -5,21 +5,37 @@ using System.Text;
 
 namespace MISA.ApplicationCore.Entities
 {
+    /// <summary>
+    /// Khai báo thuộc tính bắt buộc nhập
+    /// CreatedBy: HNANH (20/11/2020)
+    /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public class Required: Attribute
     {
 
     }
+    /// <summary>
+    /// Khai báo thuộc tính kiểm tra trùng
+    /// CreatedBy: HNANH (20/11/2020)
+    /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public class CheckDuplicate : Attribute
     {
 
     }
+    /// <summary>
+    /// Khai báo thuộc tính khóa chính
+    /// CreatedBy: HNANH (20/11/2020)
+    /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public class PrimaryKey: Attribute
     {
 
     }
+    /// <summary>
+    /// Khai báo thuộc tính kiểm tra độ dài tối đa
+    /// CreatedBy: HNANH (20/11/2020)
+    /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public class MaxLength:Attribute
     {
@@ -31,6 +47,10 @@ namespace MISA.ApplicationCore.Entities
             this.ErrorMsg = msg;
         }
     }
+    /// <summary>
+    /// Khai báo thuộc tính nhằm giải thích tên trưng bày
+    /// CreatedBy: HNANH (20/11/2020)
+    /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public class DisplayName:Attribute
     {
@@ -40,8 +60,15 @@ namespace MISA.ApplicationCore.Entities
             this.Name = name;
         }
     }
+
+    /// <summary>
+    /// Đối tượng dùng chung
+    /// </summary>
     public class BaseEntity
     {
+        /// <summary>
+        /// Thuộc tính trạng thái của đối tượng
+        /// </summary>
         public EntityState EntityState { get; set; } = EntityState.AddNew;
         /// <summary>
         /// Ngày giờ tạo bản ghi

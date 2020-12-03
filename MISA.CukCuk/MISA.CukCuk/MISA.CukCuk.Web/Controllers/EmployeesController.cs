@@ -14,66 +14,45 @@ namespace MISA.CukCuk.Web.Controllers
     [ApiController]
     public class EmployeesController : EntitiesController<Employee>
     {
+        #region Declare
         IEmployeeService _employeeService;
         //IBaseService<Employee> _baseService;
-        public EmployeesController(IEmployeeService employeeService) :base(employeeService)
+        #endregion
+
+        #region Constructor
+        public EmployeesController(IEmployeeService employeeService) : base(employeeService)
         {
             _employeeService = employeeService;
         }
+        #endregion
+
+        #region Method
+        /// <summary>
+        /// Lấy danh sách nhân viên theo StoreProcedure
+        /// </summary>
+        /// <param name="procedureName">Tên StoreProcedure</param>
+        /// <returns>Trả về trạng thái HTTP và danh sách nhân viên</returns>
+        /// CreatedBy: HNANH (01/12/2020)
         [HttpGet("getbyprocedure")]
-        public IActionResult GetEntitiesByProc([FromQuery]string procedureName)
+        public IActionResult GetEntitiesByProc([FromQuery] string procedureName)
         {
             var entities = _employeeService.GetEmployeeByProc(procedureName);
             return Ok(entities);
         }
-        [HttpGet("search")]
-        public IActionResult GetEntitiesByCodeNamePhone([FromQuery] string procedureName, [FromQuery] string searchtext)
-        {
-            var entities = _employeeService.GetEmployeeByCodeNamePhone(procedureName, searchtext);
-            return Ok(entities);
-        }
 
-        [HttpGet("searchbypositiondepartment")]
-        public IActionResult GetEntitiesByPositionDepartment([FromQuery] string procedureName, [FromQuery] string positionId, [FromQuery] string departmentId)
-        {
-            var entities = _employeeService.GetEmployeeByPositionDepartment(procedureName, positionId, departmentId);
-            return Ok(entities);
-        }
+        /// <summary>
+        /// Tìm kiếm danh sách nhân viên theo từ khóa, phòng ban và vị trí/chức vụ
+        /// </summary>
+        /// <param name="searchText">Từ khóa tìm kiếm: mã nhân viên, tên hoặc số điện thoại</param>
+        /// <param name="departmentId">Id phòng ban</param>
+        /// <param name="positionId">Id vị trí/chức vụ</param>
+        /// <returns>Trạng thái HTTP và danh sách nhân viên</returns>
+        /// CreatedBy: HNANH (02/12/2020)
         [HttpGet("filter")]
         public IActionResult GetEmployeesFilter(string searchText, Guid? departmentId, Guid? positionId)
         {
             return Ok(_employeeService.GetEmployeesFilter(searchText, departmentId, positionId));
         }
-        // GET: api/<EmployeesController>
-        //[HttpGet]
-        //public IEnumerable<Employee> Get()
-        //{
-        //    return _employeeService.GetEmployees();
-        //}
-
-        //// GET api/<EmployeesController>/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
-        //// POST api/<EmployeesController>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
-
-        //// PUT api/<EmployeesController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE api/<EmployeesController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        #endregion
     }
 }

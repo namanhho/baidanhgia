@@ -60,22 +60,18 @@ class Base {
                     url: me.host + me.apiRouter + `/${recordId}`,
                     method: "Delete",
                 }).done(function (res) {
-                    //hiện thị thông báo xóa thành công
-                    //$.notify(
-                    //    "Xóa thành công", { className: "success", position: 'bottom left' }
-                    //);
-                    //  debugger
 
                     // đóng form xác nhận xóa
                     dialogWarning.dialog("close");
 
                     //load lại dữ liệu
                     me.loadData();
-
+                    var mess = res.Messenger;
                     //hiện thị thông báo xóa thành công
-                    me.openPopUpMessenger("success", "Thực hiện xóa thành công");
+                    me.openPopUpMessenger("success", mess);
                 }).fail(function (res) {
-                    me.openPopUpMessenger("danger", "Thực hiện lỗi, vui lòng kiểm tra lại");
+                    var mess = res.Messenger;
+                    me.openPopUpMessenger("danger", mess);
                     dialogWarning.dialog("close");
                     debugger;
                 })
@@ -184,17 +180,6 @@ class Base {
                 $(this).attr("validate", true);
             }
         });
-        //$(".input-required").blur(function () {
-        //    //kiểm tra dữ liệu đã nhập, nếu để trống thì cảnh báo
-        //    var value = $(this).val();
-        //    if (!value) {
-        //        $(this).addClass("border-red");
-        //        $(this).attr("title", "Trường này không được để trống");
-        //    }
-        //    else {
-        //        $(this).removeClass("border-red");
-        //    }
-        //});
 
         /*
          Kiểm tra thông tin mã đã đúng định dạng chưa
@@ -205,7 +190,7 @@ class Base {
             var value = $(this).val().trim();  //.trim() để đảm bảo khi người dùng nhập toàn dấu cách thì value vẫn sẽ là null;
             var check = /NV-[0-9]{1,10}/.test(value);
            
-            //Kiểm tra dữ liệu có bị trùng không
+            //Kiểm tra dữ liệu có đúng định dạng chưa
             if (!check) {
                 $(this).addClass("border-red");
                 $(this).attr("title", "Dữ liệu không đúng định dạng (NV-xxxxxxxxxx)");
@@ -252,6 +237,11 @@ class Base {
                 url: this.host + this.apiRouter + this.endPoint,
                 method: "GET",
             }).done(function (res) {
+                if (res.length == 0) {
+                    $(".loading").hide();
+                    me.openPopUpMessenger("info", "Dữ liệu trống");
+                    return;
+                }
                 $.each(res, function (index, obj) {
                     var tr = $(`<tr></tr>`);
                     tr.data("recordid", obj[entityId]);

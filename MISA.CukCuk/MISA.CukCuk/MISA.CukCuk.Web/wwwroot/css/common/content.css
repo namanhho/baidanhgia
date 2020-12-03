@@ -165,7 +165,7 @@ th, td {
 }
 /*Cố định chiều dài cột, khi dữ liệu dài quá max-width thì hiện...*/
 .fix-width-table {
-    max-width: 150px;
+    max-width: 100px;
     white-space: nowrap;
     overflow: hidden !important;
     text-overflow: ellipsis;

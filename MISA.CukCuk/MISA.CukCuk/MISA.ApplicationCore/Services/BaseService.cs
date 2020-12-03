@@ -7,10 +7,17 @@ using System.Text;
 
 namespace MISA.ApplicationCore.Services
 {
-    public class BaseService<TEntity> : IBaseService<TEntity> where TEntity:BaseEntity
+    /// <summary>
+    /// Xử lý nghiệp vụ chung
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
+    public class BaseService<TEntity> : IBaseService<TEntity> where TEntity : BaseEntity
     {
+        #region Declare
         IBaseRepository<TEntity> _baseRepository;
         ServiceResult _serviceResult;
+        #endregion
+
         #region Construtor
         public BaseService(IBaseRepository<TEntity> baseRepository)
         {
@@ -18,22 +25,11 @@ namespace MISA.ApplicationCore.Services
             _serviceResult = new ServiceResult() { MISACode = Enums.MISACode.Success };
         }
         #endregion
+
         #region Method
-        public ServiceResult Delete(string entityId)
+        public IEnumerable<TEntity> GetEntities()
         {
-            var rowAffected= _baseRepository.Delete(entityId);
-            _serviceResult.Data = rowAffected;
-            if (rowAffected == 0)
-            {
-                _serviceResult.Messenger = "Không tìm thấy server";
-                _serviceResult.MISACode = Enums.MISACode.NotFound;
-            }
-            else
-            {
-                _serviceResult.Messenger = "Xóa thành công";
-                _serviceResult.MISACode = Enums.MISACode.Success;
-            }
-            return _serviceResult;
+            return _baseRepository.GetEntities();
         }
 
         public TEntity GetEntityById(string entityId)
@@ -41,18 +37,13 @@ namespace MISA.ApplicationCore.Services
             return _baseRepository.GetEntityById(entityId);
         }
 
-        public IEnumerable<TEntity> GetEntities()
-        {
-            return _baseRepository.GetEntities();
-        }
-
         public virtual ServiceResult Insert(TEntity entity)
         {
             entity.EntityState = Enums.EntityState.AddNew;
             // Validate dữ liệu
             var isValidate = Validate(entity);
-            
-            if(isValidate == true)
+
+            if (isValidate == true)
             {
                 _serviceResult.Data = _baseRepository.Insert(entity);
                 _serviceResult.Messenger = Properties.Resources.Msg_AddSuccess;
@@ -72,8 +63,8 @@ namespace MISA.ApplicationCore.Services
             var isValidate = Validate(entity);
             if (isValidate == true)
             {
-               var rowAfffected= _baseRepository.Update(entity);
-                if(rowAfffected == 0)
+                var rowAfffected = _baseRepository.Update(entity);
+                if (rowAfffected == 0)
                 {
                     _serviceResult.Data = rowAfffected;
                     _serviceResult.Messenger = Properties.Resources.Msg_NotFound;
@@ -93,6 +84,23 @@ namespace MISA.ApplicationCore.Services
             }
         }
 
+        public ServiceResult Delete(string entityId)
+        {
+            var rowAffected = _baseRepository.Delete(entityId);
+            _serviceResult.Data = rowAffected;
+            if (rowAffected == 0)
+            {
+                _serviceResult.Messenger = "Không tìm thấy server";
+                _serviceResult.MISACode = Enums.MISACode.NotFound;
+            }
+            else
+            {
+                _serviceResult.Messenger = "Xóa thành công";
+                _serviceResult.MISACode = Enums.MISACode.Success;
+            }
+            return _serviceResult;
+        }
+
         /// <summary>
         /// Hàm validate chung của cha mà tất cả các con phải thực hiện, để private để không cho override
         /// </summary>
@@ -110,7 +118,7 @@ namespace MISA.ApplicationCore.Services
                 //Lấy tên attribute đã được gán displayName
                 var displayNameAttribute = property.GetCustomAttributes(typeof(DisplayName), true);
                 // Kiểm tra xem có attribute cần phải validate không
-                if(displayNameAttribute.Length > 0)
+                if (displayNameAttribute.Length > 0)
                 {
                     displayName = (displayNameAttribute[0] as DisplayName).Name;
                 }
@@ -118,23 +126,23 @@ namespace MISA.ApplicationCore.Services
                 {
                     //Check bắt buộc nhập
                     var propertyValue = property.GetValue(entity);
-                    if(propertyValue == null)
+                    if (propertyValue == null)
                     {
                         isValidate = false;
                         mesArrayError.Add(string.Format(Properties.Resources.Msg_EmptyData, displayName));
                         _serviceResult.Messenger = Properties.Resources.Msg_ErrorData;
                         _serviceResult.MISACode = Enums.MISACode.NotValid;
-                        
+
                     }
                 }
-                if(property.IsDefined(typeof(CheckDuplicate), false))
+                if (property.IsDefined(typeof(CheckDuplicate), false))
                 {
                     // Check trùng
                     var propertyName = property.Name;
                     var propertyValue = property.GetValue(entity);
                     var entityDuplicate = _baseRepository.GetEntityByProperty(entity, property);
 
-                    if(entityDuplicate != null)
+                    if (entityDuplicate != null)
                     {
                         isValidate = false;
                         mesArrayError.Add(string.Format(Properties.Resources.Msg_DuplicateData, displayName));
@@ -150,11 +158,11 @@ namespace MISA.ApplicationCore.Services
                     // Lấy độ dài max và thông điệp đã khai báo
                     var attibuteMaxLength = property.GetCustomAttributes(typeof(MaxLength), true)[0];
                     var maxLenght = (attibuteMaxLength as MaxLength).Value;
-                    var errorMsg= (attibuteMaxLength as MaxLength).ErrorMsg;
-                    if(propertyValue.ToString().Trim().Length > maxLenght)
+                    var errorMsg = (attibuteMaxLength as MaxLength).ErrorMsg;
+                    if (propertyValue.ToString().Trim().Length > maxLenght)
                     {
                         isValidate = false;
-                        mesArrayError.Add(errorMsg??string.Format(Properties.Resources.Msg_LongData, displayName,maxLenght));
+                        mesArrayError.Add(errorMsg ?? string.Format(Properties.Resources.Msg_LongData, displayName, maxLenght));
                         _serviceResult.Messenger = Properties.Resources.Msg_LongData;
                         _serviceResult.MISACode = Enums.MISACode.NotValid;
                     }
@@ -168,12 +176,14 @@ namespace MISA.ApplicationCore.Services
             }
             return isValidate;
         }
+
         /// <summary>
         /// Hàm thực hiện kiểm tra dữ liệu/nghiệp vụ tùy chỉnh
         /// </summary>
         /// <param name="entity">Đối tượng</param>
         /// <returns>Trả về đúng nếu dữ liệu hợp lệ, trả về sai nếu dữ liệu không hợp lệ</returns>
-        protected virtual bool ValidateCustom(TEntity entity) {
+        protected virtual bool ValidateCustom(TEntity entity)
+        {
             return true;
         }
 

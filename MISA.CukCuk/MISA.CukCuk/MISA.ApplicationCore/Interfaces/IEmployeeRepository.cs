@@ -7,7 +7,16 @@ namespace MISA.ApplicationCore.Interfaces
 {
     public interface IEmployeeRepository: IBaseRepository<Employee>
     {
+        /// <summary>
+        /// Lấy danh sách hàng theo từ khóa tìm kiếm, phòng ban, vị trí/chức vụ
+        /// </summary>
+        /// <param name="searchText">Từ khóa tìm kiếm: mã, tên hoặc số điện thoại nhân viên</param>
+        /// <param name="departmentId">Id phòng ban</param>
+        /// <param name="positionId">Id vị trí/chức vụ</param>
+        /// <returns>Danh sách nhân viên</returns>
+        /// CreatedBy: HNANH (03/12/2020)
         IEnumerable<Employee> GetEmployeesFilter(string searchText, Guid? departmentId, Guid? positionId);
+        
         /// <summary>
         /// Lấy khách hàng qua mã khách hàng
         /// </summary>
@@ -15,20 +24,5 @@ namespace MISA.ApplicationCore.Interfaces
         /// <returns>Khách hàng</returns>
         /// CreatedBy: HNANH (26/11/2020)
         Employee GetEmployeeByCode(string employeeCode);
-        /// <summary>
-        /// Lấy danh sách khách hàng qua mã khách hàng
-        /// </summary>
-        /// <param name="Employee">Object khách hàng</param>
-        /// <returns>Danh sách khách hàng</returns>
-        /// CreatedBy: HNANH (26/11/2020)
-        Employee GetAllEmployeeByCode(Employee employee);
-        /// <summary>
-        /// Lấy danh sách khách hàng qua số điện thoại
-        /// </summary>
-        /// <param name="Employee">Object khách hàng</param>
-        /// <returns>Danh sách khách hàng</returns>
-        /// CreatedBy: HNANH (26/11/2020)
-        Employee GetAllEmployeeByPhoneNumber(Employee employee);
-
     }
 }
