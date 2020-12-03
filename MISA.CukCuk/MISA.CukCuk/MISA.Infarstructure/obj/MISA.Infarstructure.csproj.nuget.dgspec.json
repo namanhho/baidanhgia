@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.Infarstructure\\MISA.Infarstructure.csproj": {}
+    "C:\\Users\\Nam Anh\\Desktop\\WEB2020_10_HNANH\\MISA.CukCuk\\MISA.CukCuk\\MISA.Infarstructure\\MISA.Infarstructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj": {
+    "C:\\Users\\Nam Anh\\Desktop\\WEB2020_10_HNANH\\MISA.CukCuk\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj",
+        "projectUniqueName": "C:\\Users\\Nam Anh\\Desktop\\WEB2020_10_HNANH\\MISA.CukCuk\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj",
         "projectName": "MISA.ApplicationCore",
-        "projectPath": "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj",
+        "projectPath": "C:\\Users\\Nam Anh\\Desktop\\WEB2020_10_HNANH\\MISA.CukCuk\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj",
         "packagesPath": "C:\\Users\\Nam Anh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.ApplicationCore\\obj\\",
+        "outputPath": "C:\\Users\\Nam Anh\\Desktop\\WEB2020_10_HNANH\\MISA.CukCuk\\MISA.CukCuk\\MISA.ApplicationCore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nam Anh\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -56,14 +56,14 @@
         }
       }
     },
-    "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.Infarstructure\\MISA.Infarstructure.csproj": {
+    "C:\\Users\\Nam Anh\\Desktop\\WEB2020_10_HNANH\\MISA.CukCuk\\MISA.CukCuk\\MISA.Infarstructure\\MISA.Infarstructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.Infarstructure\\MISA.Infarstructure.csproj",
+        "projectUniqueName": "C:\\Users\\Nam Anh\\Desktop\\WEB2020_10_HNANH\\MISA.CukCuk\\MISA.CukCuk\\MISA.Infarstructure\\MISA.Infarstructure.csproj",
         "projectName": "MISA.Infarstructure",
-        "projectPath": "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.Infarstructure\\MISA.Infarstructure.csproj",
+        "projectPath": "C:\\Users\\Nam Anh\\Desktop\\WEB2020_10_HNANH\\MISA.CukCuk\\MISA.CukCuk\\MISA.Infarstructure\\MISA.Infarstructure.csproj",
         "packagesPath": "C:\\Users\\Nam Anh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.Infarstructure\\obj\\",
+        "outputPath": "C:\\Users\\Nam Anh\\Desktop\\WEB2020_10_HNANH\\MISA.CukCuk\\MISA.CukCuk\\MISA.Infarstructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nam Anh\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -79,8 +79,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj": {
-                "projectPath": "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj"
+              "C:\\Users\\Nam Anh\\Desktop\\WEB2020_10_HNANH\\MISA.CukCuk\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj": {
+                "projectPath": "C:\\Users\\Nam Anh\\Desktop\\WEB2020_10_HNANH\\MISA.CukCuk\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj"
               }
             }
           }

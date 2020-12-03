@@ -5804,11 +5804,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.CukCuk.Web\\MISA.CukCuk.Web.csproj",
+      "projectUniqueName": "C:\\Users\\Nam Anh\\Desktop\\WEB2020_10_HNANH\\MISA.CukCuk\\MISA.CukCuk\\MISA.CukCuk.Web\\MISA.CukCuk.Web.csproj",
       "projectName": "MISA.CukCuk.Web",
-      "projectPath": "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.CukCuk.Web\\MISA.CukCuk.Web.csproj",
+      "projectPath": "C:\\Users\\Nam Anh\\Desktop\\WEB2020_10_HNANH\\MISA.CukCuk\\MISA.CukCuk\\MISA.CukCuk.Web\\MISA.CukCuk.Web.csproj",
       "packagesPath": "C:\\Users\\Nam Anh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.CukCuk.Web\\obj\\",
+      "outputPath": "C:\\Users\\Nam Anh\\Desktop\\WEB2020_10_HNANH\\MISA.CukCuk\\MISA.CukCuk\\MISA.CukCuk.Web\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Nam Anh\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5824,11 +5824,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj": {
-              "projectPath": "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj"
+            "C:\\Users\\Nam Anh\\Desktop\\WEB2020_10_HNANH\\MISA.CukCuk\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj": {
+              "projectPath": "C:\\Users\\Nam Anh\\Desktop\\WEB2020_10_HNANH\\MISA.CukCuk\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj"
             },
-            "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.Infarstructure\\MISA.Infarstructure.csproj": {
-              "projectPath": "C:\\Users\\Nam Anh\\Desktop\\honamanh\\MISA.CukCuk\\MISA.CukCuk\\MISA.Infarstructure\\MISA.Infarstructure.csproj"
+            "C:\\Users\\Nam Anh\\Desktop\\WEB2020_10_HNANH\\MISA.CukCuk\\MISA.CukCuk\\MISA.Infarstructure\\MISA.Infarstructure.csproj": {
+              "projectPath": "C:\\Users\\Nam Anh\\Desktop\\WEB2020_10_HNANH\\MISA.CukCuk\\MISA.CukCuk\\MISA.Infarstructure\\MISA.Infarstructure.csproj"
             }
           }
         }

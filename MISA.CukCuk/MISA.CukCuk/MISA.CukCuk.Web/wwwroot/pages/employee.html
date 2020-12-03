@@ -63,19 +63,12 @@
     <!--content-->
     <div class="content">
         <div class="toolbar-of-table">
-            <div class="title-toolbar"><h1>Quản lý lao động</h1></div>
+            <div class="title-toolbar"><h1>Danh sách nhân viên</h1></div>
             <div class="button-toolbar">
-                <!--<button type="button" class="m-button-icon margin-button">
-                    <i class="fas fa-sync-alt icon-syncing"></i>
-                    <div class="title-button-icon">Đồng bộ từ HRM</div>
-                </button>-->
                 <button type="button" id="btn-add" class="btn-add m-button-icon margin-button">
                     <i class="fas fa-user-plus icon-add-labor"></i>
                     <div class="title-button-icon">Thêm lao động</div>
                 </button>
-                <!--<button type="button" class="m-button-only-icon button-dropdown">
-                    <i class="fas fa-caret-down fa-lg icon-dropdown"></i>
-                </button>-->
             </div>
         </div>
         <div class="search-table">
@@ -86,19 +79,11 @@
                 <div class="choose-department" style="margin-left: 16px;">
                     <select type="search" id="searchDepartment" class="m-select-dialog" style="width: 200px;" fieldName="DepartmentId" selectName="DepartmentId" selectValue="DepartmentName" api="/api/v1/departments">
                         <option value="" selected="">Tất cả phòng ban</option>
-                        <!--<option value="hr-department">Phòng Nhân Sự</option>
-                        <option value="traning-department">Phòng Đào Tạo</option>
-                        <option value="research-department">Phòng Nghiên Cứu</option>-->
                     </select>
                 </div>
                 <div class="choose-position" style="margin-left: 16px;">
                     <select type="search" id="searchPosition" class="m-select-dialog" style="width: 200px;" fieldName="PositionId" selectName="PositionId" selectValue="PositionName" api="/api/v1/positions">
                         <option value="" selected="">Tất cả vị trí</option>
-                        <!--<option value="hr-department">Giám Đốc</option>
-                        <option value="traning-department">Phó Giám Đốc</option>
-                        <option value="research-department">Trưởng Phòng</option>
-                        <option value="research-department">Phó Trưởng Phòng</option>
-                        <option value="research-department">Nhân Viên</option>-->
                     </select>
                 </div>
             </div>
@@ -112,7 +97,6 @@
                         <i class="fas fa-trash-alt icon-add-labor"></i>
                         <div class="title-button-icon">Xóa</div>
                     </button>
-                    <!--<button type="button" class="m-button-only-icon"><i class="fas fa-download icon-download"></i></button>-->
                     <button type="button" id="btnRefresh" class="m-button-only-icon"><i class="fas fa-sync icon-syncing"></i></button>
                 </div>
             </div>
@@ -131,45 +115,19 @@
                             <th fieldName="PositionName">Chức vụ<i class="fas fa-sort icon-sort"></i></th>
                             <th fieldName="DepartmentName">Phòng Ban<i class="fas fa-sort icon-sort"></i></th>
                             <th fieldName="Salary" formatType="money">Mức lương hiện tại<i class="fas fa-sort icon-sort"></i></th>
-                            <!--<th fieldName="Address" formatType="address" class="fix-width-table align-salary">Địa chỉ<i class="fas fa-sort icon-sort"></i></th>-->
                             <th fieldName="WorkStatusName">Tình trạng công việc<i class="fas fa-sort icon-sort"></i></th>
-                            <!--<th class="fix-width-table align-salary">Hệ số Mức lương tham gia BHXH<i class="fas fa-sort icon-sort"></i></th>-->
 
                         </tr>
                     </thead>
                     <tbody>
-                        <!--<tr>
-                            <td>1</td>
-                            <td>MF633</td>
-                            <td>Hồ Nam Anh</td>
-                            <td>0123456789</td>
-                            <td>Nam</td>
-                            <td>Fresher</td>
-                            <td>Văn phòng Hà Nội</td>
-                            <td>3000000</td>
-                            <td>Đang tham gia</td>
-                            <td>Bệnh viện Thường Tín</td>
-                        </tr>-->
                     </tbody>
                 </table>
             </div>
             <div class="nav-page">
-                <div class="title-nav-page">Hiển thị 1-15/59 lao động</div>
-                <!--<div class="button-nav-page">
-                    <button class="button-bottom-bar button-back-page">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="button-bottom-bar button-change-page-number">1</button>
-                    <button class="button-bottom-bar button-change-page-number">2</button>
-                    <button class="button-bottom-bar button-change-page-number">3</button>
-                    <button class="button-bottom-bar button-change-page-number">4</button>
-                    <button class="button-bottom-bar button-next-page">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>-->
+                <div class="title-nav-page">Hiển thị 1-10/1000 nhân viên</div>
                 <div class="button-control-show">
                     <button type="button" class="button-change-show-table">
-                        15/Trang
+                        10 nhân viên/Trang
                         <i class="fas fa-chevron-down icon-change-show-table"></i>
                     </button>
 
@@ -181,13 +139,7 @@
         <div class="loading-modal"></div>
         <div class="loading-icon"></div>
     </div>
-    <div class="m-dialog" title="Thông tin khách hàng">
-        <!--<div class="m-dialog-header">
-            <div class="m-dialog-header-title">Thông tin khách hàng</div>
-            <button type="button" class="button-dialog-close">
-                <i class="fas fa-times fa-lg"></i>
-            </button>
-        </div>-->
+    <div class="m-dialog" title="Thông tin nhân viên">
         <div class="dialog-modal"></div>
         <div class="m-dialog-content">
             <div class="m-dialog-content-top">
